@@ -15,37 +15,64 @@
 
 namespace CSharpBasicsAssignment;
 
+struct Point
+{
+    public int X;
+    public int Y;
+}
+
 class Program
 {
     static void Main(string[] args)
     {
+        Order o1 = new Order
+        {
+            OrderId = 1001,
+            CustomerName = "Omar",
+            Quantity = 2,
+            UnitPrice = 100m,
+            TotalPrice = 0m,
+            IsPaid = false,
+            DiscountPercent = 10,
+            ShippingCity = "BeniSuef",
+            Priority = 'H',
+            ItemCode = 123456L
+        };
 
-        Console.WriteLine("HelloWorld!");
-        RunTypesDemo();
+        o1.CalculateTotal();
+
+        Order o2 = o1;
+        o2.IsPaid = true;
+
+        Console.WriteLine($"o1.IsPaid = {o1.IsPaid}");
+        Console.WriteLine($"o2.IsPaid = {o2.IsPaid}");
+
+        //RunTypesDemo();
+        //RunValueVsReferenceDemo();
     }
 
     static void RunTypesDemo()
     {
-      //  Declare a variable of every type:
-      //int, long, double, decimal, bool, char, string, and one inferred with var 
-      //— print each value and its runtime type using .GetType().
-      int myInt = 42;
-      long myLong = 1234567890123456789;
-      double myDouble = 3.14159d;
-      decimal myDecimal = 19.99m;
-      bool myBool = true;
-      char myChar = 'A';
-      string myString = "Omar";
-      var myVar = 100;
+        //  Declare a variable of every type:
+        //int, long, double, decimal, bool, char, string, and one inferred with var 
+        //— print each value and its runtime type using .GetType().
+        int myInt = 42;
+        long myLong = 1234567890123456789;
+        double myDouble = 3.14159d;
+        decimal myDecimal = 19.99m;
+        bool myBool = true;
+        char myChar = 'A';
+        string myString = "Omar";
+        var myVar = 100;
 
-      Console.WriteLine($"int: {myInt}, Type: {myInt.GetType()}");
-      Console.WriteLine($"long: {myLong}, Type: {myLong.GetType()}");
-      Console.WriteLine($"double: {myDouble}, Type: {myDouble.GetType()}");
-      Console.WriteLine($"decimal: {myDecimal}, Type: {myDecimal.GetType()}");
-      Console.WriteLine($"bool: {myBool}, Type: {myBool.GetType()}");
-      Console.WriteLine($"char: {myChar}, Type: {myChar.GetType()}");
-      Console.WriteLine($"string: {myString}, Type: {myString.GetType()}");
-      Console.WriteLine($"var: {myVar}, Type: {myVar.GetType()}");
+        Console.WriteLine($"int: {myInt}, Type: {myInt.GetType()}");
+        Console.WriteLine($"long: {myLong}, Type: {myLong.GetType()}");
+        Console.WriteLine($"double: {myDouble}, Type: {myDouble.GetType()}");
+        Console.WriteLine($"decimal: {myDecimal}, Type: {myDecimal.GetType()}");
+        Console.WriteLine($"bool: {myBool}, Type: {myBool.GetType()}");
+        Console.WriteLine($"char: {myChar}, Type: {myChar.GetType()}");
+        Console.WriteLine($"string: {myString}, Type: {myString.GetType()}");
+        Console.WriteLine($"var: {myVar}, Type: {myVar.GetType()}");
 
         Console.WriteLine("=============================");
 
@@ -76,7 +103,7 @@ class Program
         int test3 = Convert.ToInt32(Test);
 
 
-        
+
         // The explicit cast (int) truncates the decimal part, while Convert.ToInt32 rounds the value to the nearest integer
         Console.WriteLine($"double to int (cast): {test2}");
         Console.WriteLine($"double to int (Convert.ToInt32): {test3}");
@@ -133,6 +160,17 @@ class Program
         , and implicit conversion could lead to loss of precision or unexpected behavior.
         */
     }
+    static void RunValueVsReferenceDemo()
+    {
+        Point p1 = new Point { X = 1, Y = 2 };
+        Point p2 = p1;
+
+        p2.X = 99;
+        Console.WriteLine($"p1.X = {p1.X}, p2.X = {p2.X}"); // they must differ
+        //Explain why in a comment
+        // Answer: Because Point is a value type (struct), when we assign p1 to p2, a copy of the data is made.
+    }
+
 
 }
 
