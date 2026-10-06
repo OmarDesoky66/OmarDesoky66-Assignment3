@@ -13,6 +13,7 @@
 // File-scoped namespaces (;) eliminate the extra indentation caused by namespace braces.
 
 
+
 namespace CSharpBasicsAssignment;
 
 struct Point
@@ -21,10 +22,36 @@ struct Point
     public int Y;
 }
 
+
+
 class Program
 {
+    //Add a private field to your Program/class and read it from two different methods (field scope).
+    private static int number = 100; //both methods(1,2) can access it:
+
+    static void MethodOne()
+    {
+        Console.WriteLine(number);
+    }
+
+    static void MethodTwo()
+    {
+        Console.WriteLine(number);
+    }
+    // Write a method with a local variable that is not visible outside that method(method scope).
+    static void MethodScopeDemo()
+    {
+        int localNumber = 50; // only visible in this method
+
+        Console.WriteLine(localNumber);
+    }
+
+    
     static void Main(string[] args)
     {
+
+        
+
         Order o1 = new Order
         {
             OrderId = 1001,
@@ -66,6 +93,62 @@ class Program
 
         RunTypesDemo();
         RunValueVsReferenceDemo();
+
+
+        for (int i = 0; i < 2; i++)
+        {
+
+            // local variables, only visible in this loop iteration
+            int localVar = i * 10;
+            Console.WriteLine(i);
+            Console.WriteLine(localVar);
+        }
+
+        for (int i = 0; i < 2; i++)
+        {
+
+            // local variables, only visible in this loop iteration
+            int localVar = i * 10;
+
+        }
+        // Console.WriteLine(i);                            // Error: 'i' does not exist in the current context {}
+        // Console.WriteLine(localVar);                     // Error: 'localVar' does not exist in the current context {}
+
+
+        int total = 100;
+        total += 5;       // means total = total + 5;
+        Console.WriteLine(total);
+
+        total -= 10;      // means total = total - 10;
+        Console.WriteLine(total);
+
+        total *= 2;         // means total = total * 2;
+        Console.WriteLine(total);
+
+        total /= 5;       // means total = total / 5;   
+        Console.WriteLine(total);
+
+        total %= 7;         // means total = total % 7;
+        Console.WriteLine(total);
+
+
+        int a = 12; // 1100 in binary
+        int b = 10; // 1010 in binary
+        //Print a & b, a | b, and a ^ b, and in a comment show the binary of each operand and the bit-by-bit result.
+        Console.WriteLine($"a & b = {a & b}"); // 12 & 10 = 8 => 1100 & 1010 = 1000
+        
+        Console.WriteLine($"a | b = {a | b}"); // 12 | 10 = 14 => 1100 | 1010 = 1110
+
+        Console.WriteLine($"a ^ b = {a ^ b}"); // 12 ^ 10 = 6 => 1100 ^ 1010 = 0110
+
+
+
+        
+        //In one sentence, explain the practical difference between & (bitwise) and && (logical) — specifically, what happens differently when the left operand is false in an if-condition.
+       
+        
+        // The bitwise AND (&) operator performs a bit-by-bit comparison of two operands, while the logical AND (&&) operator evaluates the second operand only if the first is true.
+
     }
 
     static void RunTypesDemo()
