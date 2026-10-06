@@ -44,11 +44,28 @@ class Program
         Order o2 = o1;
         o2.IsPaid = true;
 
+        // Order is a reference type, so assigning o1 to o2 copies the reference.
         Console.WriteLine($"o1.IsPaid = {o1.IsPaid}");
         Console.WriteLine($"o2.IsPaid = {o2.IsPaid}");
 
-        //RunTypesDemo();
-        //RunValueVsReferenceDemo();
+        object boxedOrder = o1;
+        Order o3 = (Order)boxedOrder;
+
+        Console.WriteLine(object.ReferenceEquals(o1, o3));
+
+        o2.PrintSummary();
+
+        /*
+         Value types store their actual values, while reference types store a reference
+         to an object that lives on the heap. Assigning a value type copies the value,
+         so changing the copy does not affect the original. Assigning a reference type
+         copies the reference, so both variables point to the same object. Storing a
+         reference type in an object variable does not create a new object; it stores
+         the same reference.
+         */
+
+        RunTypesDemo();
+        RunValueVsReferenceDemo();
     }
 
     static void RunTypesDemo()

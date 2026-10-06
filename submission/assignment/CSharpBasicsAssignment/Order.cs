@@ -13,7 +13,7 @@ internal class Order
     public char Priority;
     public long ItemCode;
 
-
+    
     /// <summary>
     /// computes TotalPrice from Quantity, UnitPrice, and DiscountPercent (e.g. Quantity ×
     ///UnitPrice × (1 − Discount/100)) and stores the result back into the TotalPrice field.
